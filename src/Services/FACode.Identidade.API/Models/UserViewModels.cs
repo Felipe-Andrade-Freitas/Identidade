@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace FACode.Identidade.API.Models
@@ -7,6 +8,12 @@ namespace FACode.Identidade.API.Models
     {
         [Required(ErrorMessage = "O campo {0} é obrigatório")]
         public string Nome { get; set; }
+
+        [Required(ErrorMessage = "O campo {0} é obrigatório")]
+        public string Responsabilidade { get; set; }
+        
+        [Required(ErrorMessage = "O campo {0} é obrigatório")]
+        public string Avatar { get; set; }
 
         [Required(ErrorMessage = "O campo {0} é obrigatório")]
         [EmailAddress(ErrorMessage = "O campo {0} está em formato inválido")]
@@ -40,7 +47,10 @@ namespace FACode.Identidade.API.Models
 
     public class UsuarioToken
     {
-        public string Id { get; set; }
+        public Guid Id { get; set; }
+        public string Nome { get; set; }
+        public string Responsabilidade { get; set; }
+        public string Avatar { get; set; }
         public string Email { get; set; }
         public IEnumerable<UsuarioClaim> Claims { get; set; }
     }

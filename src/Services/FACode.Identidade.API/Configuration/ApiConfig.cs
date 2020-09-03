@@ -10,6 +10,7 @@ namespace FACode.Identidade.API.Configuration
     {
         public static IServiceCollection AddApiConfiguration(this IServiceCollection services)
         {
+            services.AddCors();
             services.AddControllers();
 
             return services;
@@ -21,6 +22,12 @@ namespace FACode.Identidade.API.Configuration
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors(builder
+                => builder
+                    .AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader());
 
             app.UseHttpsRedirection();
 

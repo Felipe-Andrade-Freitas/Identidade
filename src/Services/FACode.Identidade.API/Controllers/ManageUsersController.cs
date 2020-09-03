@@ -1,5 +1,6 @@
 
 using System.Threading.Tasks;
+using FACode.Identidade.API.Models;
 using FACode.MessageBus;
 using FACode.WebAPI.Core.Auth;
 using FACode.WebAPI.Core.Controller;
@@ -12,13 +13,13 @@ namespace FACode.Identidade.API.Controllers
   [Route("api/manage")]
   public class ManageUsersController : MainController
   {
-    private readonly SignInManager<IdentityUser> _signInManager;
-    private readonly UserManager<IdentityUser> _userManager;
+    private readonly SignInManager<User> _signInManager;
+    private readonly UserManager<User> _userManager;
     private readonly AppSettings _appSettings;
     private readonly IMessageBus _bus;
 
-    public ManageUsersController(SignInManager<IdentityUser> signInManager,
-        UserManager<IdentityUser> userManager,
+    public ManageUsersController(SignInManager<User> signInManager,
+        UserManager<User> userManager,
         IOptions<AppSettings> appSettings,
         IMessageBus bus)
     {

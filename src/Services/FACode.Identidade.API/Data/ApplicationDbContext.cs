@@ -1,5 +1,7 @@
-﻿using System;
+﻿
+using System;
 using FACode.Identidade.API.Extensions;
+using FACode.Identidade.API.Migrations;
 using FACode.Identidade.API.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -7,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FACode.Identidade.API.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<Guid>, Guid>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
@@ -15,7 +17,6 @@ namespace FACode.Identidade.API.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            base.OnModelCreating(builder);
             CustomizeIdentityData.OnModelCreatingMappings(builder);
         }
     }

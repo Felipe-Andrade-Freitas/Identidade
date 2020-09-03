@@ -1,4 +1,5 @@
-﻿using FACode.Identidade.API.Data;
+﻿using System;
+using FACode.Identidade.API.Data;
 using FACode.Identidade.API.Extensions;
 using FACode.Identidade.API.Models;
 using FACode.WebAPI.Core.Auth;
@@ -17,8 +18,7 @@ namespace FACode.Identidade.API.Configuration
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddDefaultIdentity<User>()
-                .AddRoles<IdentityRole>()
+            services.AddIdentity<User, IdentityRole<Guid>>()
                 .AddErrorDescriber<IdentityMensagensPortugues>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
